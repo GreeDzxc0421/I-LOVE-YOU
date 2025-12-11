@@ -76,15 +76,15 @@
         .buttons-container {
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 60px;
             margin-top: 40px;
             position: relative;
             min-height: 120px;
-            flex-wrap: wrap;
+            align-items: center;
         }
         
         .answer-btn {
-            padding: 20px 40px;
+            padding: 20px 50px;
             font-size: 1.8rem;
             font-weight: bold;
             border: none;
@@ -92,21 +92,20 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            position: relative;
-            z-index: 2;
+            min-width: 180px;
         }
         
         #yesBtn {
             background-color: #ff4d94;
             color: white;
-            order: 1;
+            transform: scale(1);
+            transition: transform 0.3s;
         }
         
         #noBtn {
             background-color: #ff99cc;
             color: white;
-            order: 2;
-            position: relative;
+            position: static;
         }
         
         #yesBtn:hover {
@@ -221,10 +220,11 @@
             .answer-btn {
                 font-size: 1.5rem;
                 padding: 15px 30px;
+                min-width: 140px;
             }
             
             .buttons-container {
-                gap: 20px;
+                gap: 30px;
             }
         }
         
@@ -244,6 +244,12 @@
             .answer-btn {
                 font-size: 1.3rem;
                 padding: 12px 24px;
+                min-width: 120px;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+                gap: 20px;
             }
         }
     </style>
@@ -308,6 +314,7 @@
         let yesSize = 1;
         let noClicks = 0;
         const maxYesSize = 3;
+        let noButtonMoved = false;
         
         // Function to get random position within container
         function getRandomPosition() {
@@ -328,6 +335,7 @@
         // No button click handler
         noBtn.addEventListener('click', function() {
             noClicks++;
+            noButtonMoved = true;
             
             // Make YES button bigger (up to a limit)
             if (yesSize < maxYesSize) {
@@ -341,7 +349,6 @@
             const newPos = getRandomPosition();
             noBtn.style.left = `${newPos.x}px`;
             noBtn.style.top = `${newPos.y}px`;
-            noBtn.style.transform = 'none';
             
             // Change NO button text on multiple clicks
             const noTexts = [
@@ -401,16 +408,16 @@
         
         // Make the NO button move when hovered (extra difficulty)
         noBtn.addEventListener('mouseover', function() {
-            // Only move if it hasn't been clicked too many times
-            if (noClicks < 10 && noBtn.style.position !== 'absolute') {
+            // Only move if it hasn't been clicked yet
+            if (!noButtonMoved) {
                 // Change to absolute positioning on first hover
                 noBtn.style.position = 'absolute';
                 const newPos = getRandomPosition();
                 noBtn.style.left = `${newPos.x}px`;
                 noBtn.style.top = `${newPos.y}px`;
-                noBtn.style.transform = 'none';
-            } else if (noBtn.style.position === 'absolute') {
-                // If already absolute, move it again
+                noButtonMoved = true;
+            } else if (noButtonMoved) {
+                // If already moved, move it again
                 const newPos = getRandomPosition();
                 noBtn.style.left = `${newPos.x}px`;
                 noBtn.style.top = `${newPos.y}px`;
