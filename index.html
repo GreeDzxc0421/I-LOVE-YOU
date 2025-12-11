@@ -392,25 +392,25 @@
                 }, 10000);
             }
             
-           
+            // Change title and add a happy message
             document.querySelector('h1').innerHTML = 'She Said YES! ❤️🎉';
             
-         
+            // Pre-fill the love letter with a sample (can be edited)
             loveLetter.value = "My Dearest Love,\n\nI can't believe you actually said YES! This is the happiest day of my life. From the moment I met you, I knew you were someone special. Your smile lights up my world, your laugh is my favorite sound, and your presence makes everything better.\n\nI promise to always cherish you, support you, and make you feel loved every single day. You mean everything to me, and I'm so excited for our journey together.\n\nWith all my love,\n\n[Your Name Here]";
         });
         
-      
+        // Make the NO button move when hovered (extra difficulty)
         noBtn.addEventListener('mouseover', function() {
-           
+            // Only move if it hasn't been clicked too many times
             if (noClicks < 10 && noBtn.style.position !== 'absolute') {
-               
+                // Change to absolute positioning on first hover
                 noBtn.style.position = 'absolute';
                 const newPos = getRandomPosition();
                 noBtn.style.left = `${newPos.x}px`;
                 noBtn.style.top = `${newPos.y}px`;
                 noBtn.style.transform = 'none';
             } else if (noBtn.style.position === 'absolute') {
-               
+                // If already absolute, move it again
                 const newPos = getRandomPosition();
                 noBtn.style.left = `${newPos.x}px`;
                 noBtn.style.top = `${newPos.y}px`;
