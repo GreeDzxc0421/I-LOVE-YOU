@@ -136,22 +136,59 @@
             font-size: 2rem;
         }
         
-        textarea {
+        .love-letter-content {
             width: 100%;
-            height: 300px;
+            min-height: 300px;
             padding: 20px;
             font-size: 1.2rem;
             border: 2px solid #ff99cc;
             border-radius: 10px;
             background-color: white;
-            resize: vertical;
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
+            text-align: left;
+            white-space: pre-line;
+            overflow-y: auto;
+            color: #333;
+            cursor: default;
+            user-select: text;
         }
         
-        textarea:focus {
-            outline: none;
-            border-color: #ff4d94;
+        .love-letter-content p {
+            margin-bottom: 15px;
+        }
+        
+        .photo-container {
+            display: none;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #fff0f7;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
+            border: 3px dashed #ff99cc;
+            text-align: center;
+        }
+        
+        .photo-container h2 {
+            color: #d63384;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        
+        .our-photo {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            border: 5px solid #ff99cc;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .photo-caption {
+            margin-top: 15px;
+            color: #d63384;
+            font-size: 1.3rem;
+            font-style: italic;
         }
         
         .hearts-container {
@@ -277,10 +314,24 @@
         
         <div class="love-letter-container" id="loveLetterContainer">
             <h2>My Love Letter to You 💌</h2>
-            <textarea id="loveLetter" placeholder="Write your love letter here..."></textarea>
-            <p style="text-align: center; margin-top: 15px; color: #d63384;">
-                <i class="fas fa-heart"></i> You can edit this text area to write your personal love letter! <i class="fas fa-heart"></i>
-            </p>
+            <div class="love-letter-content">
+                <!-- YOUR LOVE LETTER GOES HERE -->
+              Hello po, mahal ko!! Una po sa lahat, sorry po sa ginawa ko na napakatanga at hindi nakakalalaki. Alam ko po na hindi mo pa ako napapatawad, tulad nga po ng sabi mo, pero gagawin ko po ang best ko para maging okay na po tayo, memeko, para mag-dat-dat lovelove na tayo (sana hindi cringe pakinggan sa'yo 'yan). Memeko, sorry po kasi napa-feel ko sa'yo na nainsecure ka, na para bang wala lang ikaw, at 'di ko man lang inisip o pumasok sa isip ko bago gawin, at 'di ko man lang niconsider ang mararamdaman mo po.
+
+Gagawin ko po ang best ko hanggang sa mabalik po ang tiwala mo at mapatawad mo po ako. Kahit mapatawad na ako at maging okay na po tayo, gagawin ko pa rin po ang best ko para hindi na mangyaring maging ganito ulit. Alam ko po na mahirap paniwalaan, dahil pangalawang beses na ito, kaya okay lang po.
+
+Sana po magkita na rin tayo, at sana po dumating na agad 'yung time na gusto mo na makipag-call sa akin, memelo. Mahal na mahal po kita, at gagawin ko po ang best ko at magpapakalalaki po ako, dahil ayaw ko pong mawala ka. Mahal na mahal na mahal kita, memeko, at sana po magustuhan mo ito kahit simple lang.
+
+To my super duper beautiful, super duper cute-cute, super duper pretty, super duper gorgeous, super duper precious, super duper sweet-sweet, super duper cool and wonderful, super duper very very strong woman, super duper very very caring wife, super duper smart and intelligent, super duper creative, super duper very very good-looking, super duper very very angelic, super duper perfect, super duper hot and sexy, super duper delicious, super duper perfect, super duper wow—Babybear.
+
+                Love JOHNJOHNDAT❤️
+            </div>
+        </div>
+        
+        <div class="photo-container" id="photoContainer">
+            <h2>A Special Memory ❤️</h2>
+            <img src="9b0c223d-f465-40f7-96f1-9ee52ce06a1e.jpg" alt="Our Special Memory" class="our-photo">
+            <p class="photo-caption">You make every moment special!</p>
         </div>
         
         <footer>
@@ -307,7 +358,7 @@
         const yesBtn = document.getElementById('yesBtn');
         const noBtn = document.getElementById('noBtn');
         const loveLetterContainer = document.getElementById('loveLetterContainer');
-        const loveLetter = document.getElementById('loveLetter');
+        const photoContainer = document.getElementById('photoContainer');
         const buttonsContainer = document.querySelector('.buttons-container');
         
         // Track button sizes and click counts
@@ -381,6 +432,9 @@
             // Show the love letter
             loveLetterContainer.style.display = 'block';
             
+            // Show the photo container
+            photoContainer.style.display = 'block';
+            
             // Add celebration hearts
             for (let i = 0; i < 50; i++) {
                 const heart = document.createElement('div');
@@ -401,9 +455,6 @@
             
             // Change title and add a happy message
             document.querySelector('h1').innerHTML = 'She Said YES! ❤️🎉';
-            
-            // Pre-fill the love letter with a sample (can be edited)
-            loveLetter.value = "My Dearest Love,\n\nI can't believe you actually said YES! This is the happiest day of my life. From the moment I met you, I knew you were someone special. Your smile lights up my world, your laugh is my favorite sound, and your presence makes everything better.\n\nI promise to always cherish you, support you, and make you feel loved every single day. You mean everything to me, and I'm so excited for our journey together.\n\nWith all my love,\n\n[Your Name Here]";
         });
         
         // Make the NO button move when hovered (extra difficulty)
