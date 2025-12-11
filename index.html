@@ -76,10 +76,11 @@
         .buttons-container {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 40px;
             margin-top: 40px;
             position: relative;
             min-height: 120px;
+            flex-wrap: wrap;
         }
         
         .answer-btn {
@@ -91,33 +92,31 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            position: absolute;
+            position: relative;
+            z-index: 2;
         }
         
         #yesBtn {
             background-color: #ff4d94;
             color: white;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
+            order: 1;
         }
         
         #noBtn {
             background-color: #ff99cc;
             color: white;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 5;
+            order: 2;
+            position: relative;
         }
         
         #yesBtn:hover {
             background-color: #ff3385;
-            transform: translateX(-50%) scale(1.05);
+            transform: scale(1.05);
         }
         
         #noBtn:hover {
             background-color: #ff80bf;
-            transform: translateX(-50%) scale(1.05);
+            transform: scale(1.05);
         }
         
         .love-letter-container {
@@ -225,7 +224,7 @@
             }
             
             .buttons-container {
-                min-height: 100px;
+                gap: 20px;
             }
         }
         
@@ -245,13 +244,6 @@
             .answer-btn {
                 font-size: 1.3rem;
                 padding: 12px 24px;
-            }
-            
-            .buttons-container {
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
-                min-height: 180px;
             }
         }
     </style>
@@ -323,8 +315,8 @@
             const btnRect = noBtn.getBoundingClientRect();
             
             // Calculate available space (considering button size)
-            const maxX = containerRect.width - btnRect.width;
-            const maxY = containerRect.height - btnRect.height;
+            const maxX = containerRect.width - btnRect.width - 20;
+            const maxY = containerRect.height - btnRect.height - 20;
             
             // Generate random position
             const randomX = Math.floor(Math.random() * maxX);
@@ -340,13 +332,13 @@
             // Make YES button bigger (up to a limit)
             if (yesSize < maxYesSize) {
                 yesSize += 0.3;
-                yesBtn.style.transform = `translateX(-50%) scale(${yesSize})`;
+                yesBtn.style.transform = `scale(${yesSize})`;
                 yesBtn.style.fontSize = `${1.8 * yesSize}rem`;
             }
             
-            // Move NO button to random position
-            const newPos = getRandomPosition();
+            // Change NO button to absolute positioning and move it
             noBtn.style.position = 'absolute';
+            const newPos = getRandomPosition();
             noBtn.style.left = `${newPos.x}px`;
             noBtn.style.top = `${newPos.y}px`;
             noBtn.style.transform = 'none';
@@ -400,17 +392,25 @@
                 }, 10000);
             }
             
-            // Change title and add a happy message
+           
             document.querySelector('h1').innerHTML = 'She Said YES! ❤️🎉';
             
-            // Pre-fill the love letter with a sample (can be edited)
+         
             loveLetter.value = "My Dearest Love,\n\nI can't believe you actually said YES! This is the happiest day of my life. From the moment I met you, I knew you were someone special. Your smile lights up my world, your laugh is my favorite sound, and your presence makes everything better.\n\nI promise to always cherish you, support you, and make you feel loved every single day. You mean everything to me, and I'm so excited for our journey together.\n\nWith all my love,\n\n[Your Name Here]";
         });
         
-        // Make the NO button move when hovered (extra difficulty)
+      
         noBtn.addEventListener('mouseover', function() {
-            // Only move if it hasn't been clicked too many times
-            if (noClicks < 10) {
+           
+            if (noClicks < 10 && noBtn.style.position !== 'absolute') {
+               
+                noBtn.style.position = 'absolute';
+                const newPos = getRandomPosition();
+                noBtn.style.left = `${newPos.x}px`;
+                noBtn.style.top = `${newPos.y}px`;
+                noBtn.style.transform = 'none';
+            } else if (noBtn.style.position === 'absolute') {
+               
                 const newPos = getRandomPosition();
                 noBtn.style.left = `${newPos.x}px`;
                 noBtn.style.top = `${newPos.y}px`;
