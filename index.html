@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Special Someone ❤️</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffeff6;
+            background-image: radial-gradient(#ff9bc9 2px, transparent 2px);
+            background-size: 40px 40px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 8px solid #ffb6d9;
+        }
+        
+        h1 {
+            color: #ff66a3;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .heart-decoration {
+            font-size: 2rem;
+            color: #ff66a3;
+            margin: 0 10px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .question-container {
+            margin: 40px 0;
+            padding: 30px;
+            background-color: #fff0f7;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
+            border: 3px dashed #ff99cc;
+        }
+        
+        .question {
+            font-size: 2rem;
+            color: #d63384;
+            margin-bottom: 40px;
+            font-weight: bold;
+        }
+        
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            position: relative;
+            min-height: 120px;
+        }
+        
+        .answer-btn {
+            padding: 20px 40px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: absolute;
+        }
+        
+        #yesBtn {
+            background-color: #ff4d94;
+            color: white;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+        
+        #noBtn {
+            background-color: #ff99cc;
+            color: white;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+        }
+        
+        #yesBtn:hover {
+            background-color: #ff3385;
+            transform: translateX(-50%) scale(1.05);
+        }
+        
+        #noBtn:hover {
+            background-color: #ff80bf;
+            transform: translateX(-50%) scale(1.05);
+        }
+        
+        .love-letter-container {
+            display: none;
+            margin-top: 40px;
+            padding: 30px;
+            background-color: #fff0f7;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
+            border: 3px dashed #ff99cc;
+            text-align: left;
+        }
+        
+        .love-letter-container h2 {
+            color: #d63384;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 300px;
+            padding: 20px;
+            font-size: 1.2rem;
+            border: 2px solid #ff99cc;
+            border-radius: 10px;
+            background-color: white;
+            resize: vertical;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #ff4d94;
+        }
+        
+        .hearts-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            color: #ff66a3;
+            opacity: 0.7;
+            animation: falling 10s linear infinite;
+        }
+        
+        @keyframes falling {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        footer {
+            margin-top: 30px;
+            color: #ff66a3;
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+        
+        .instruction {
+            color: #ff66a3;
+            margin-top: 20px;
+            font-size: 1rem;
+            font-style: italic;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .question {
+                font-size: 1.5rem;
+            }
+            
+            .answer-btn {
+                font-size: 1.5rem;
+                padding: 15px 30px;
+            }
+            
+            .buttons-container {
+                min-height: 100px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .question {
+                font-size: 1.3rem;
+            }
+            
+            .answer-btn {
+                font-size: 1.3rem;
+                padding: 12px 24px;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                min-height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts-container" id="heartsContainer"></div>
+    
+    <div class="container">
+        <div class="header">
+            <span class="heart-decoration">❤️</span>
+            <h1>For My Beautiful Girlfriend</h1>
+            <span class="heart-decoration">❤️</span>
+        </div>
+        
+        <div class="question-container">
+            <p class="question">Will you go out with me?</p>
+            
+            <div class="buttons-container">
+                <button id="yesBtn" class="answer-btn">YES</button>
+                <button id="noBtn" class="answer-btn">NO</button>
+            </div>
+            
+            <p class="instruction">(Try clicking the "NO" button... I dare you!)</p>
+        </div>
+        
+        <div class="love-letter-container" id="loveLetterContainer">
+            <h2>My Love Letter to You 💌</h2>
+            <textarea id="loveLetter" placeholder="Write your love letter here..."></textarea>
+            <p style="text-align: center; margin-top: 15px; color: #d63384;">
+                <i class="fas fa-heart"></i> You can edit this text area to write your personal love letter! <i class="fas fa-heart"></i>
+            </p>
+        </div>
+        
+        <footer>
+            Made with <i class="fas fa-heart" style="color: #ff4d94;"></i> just for you
+        </footer>
+    </div>
+
+    <script>
+        // Create floating hearts
+        const heartsContainer = document.getElementById('heartsContainer');
+        const heartCount = 20;
+        
+        for (let i = 0; i < heartCount; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = `${Math.random() * 100}%`;
+            heart.style.animationDelay = `${Math.random() * 5}s`;
+            heart.style.fontSize = `${Math.random() * 20 + 15}px`;
+            heartsContainer.appendChild(heart);
+        }
+        
+        // Get DOM elements
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const loveLetterContainer = document.getElementById('loveLetterContainer');
+        const loveLetter = document.getElementById('loveLetter');
+        const buttonsContainer = document.querySelector('.buttons-container');
+        
+        // Track button sizes and click counts
+        let yesSize = 1;
+        let noClicks = 0;
+        const maxYesSize = 3;
+        
+        // Function to get random position within container
+        function getRandomPosition() {
+            const containerRect = buttonsContainer.getBoundingClientRect();
+            const btnRect = noBtn.getBoundingClientRect();
+            
+            // Calculate available space (considering button size)
+            const maxX = containerRect.width - btnRect.width;
+            const maxY = containerRect.height - btnRect.height;
+            
+            // Generate random position
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            return { x: randomX, y: randomY };
+        }
+        
+        // No button click handler
+        noBtn.addEventListener('click', function() {
+            noClicks++;
+            
+            // Make YES button bigger (up to a limit)
+            if (yesSize < maxYesSize) {
+                yesSize += 0.3;
+                yesBtn.style.transform = `translateX(-50%) scale(${yesSize})`;
+                yesBtn.style.fontSize = `${1.8 * yesSize}rem`;
+            }
+            
+            // Move NO button to random position
+            const newPos = getRandomPosition();
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = `${newPos.x}px`;
+            noBtn.style.top = `${newPos.y}px`;
+            noBtn.style.transform = 'none';
+            
+            // Change NO button text on multiple clicks
+            const noTexts = [
+                "Are you sure?",
+                "Really sure?",
+                "Think again!",
+                "Last chance!",
+                "You'll break my heart!",
+                "Please? 🥺",
+                "I'll be sad!",
+                "Give me a chance!",
+                "Pretty please?",
+                "You're killing me! 💔"
+            ];
+            
+            const textIndex = Math.min(noClicks - 1, noTexts.length - 1);
+            noBtn.textContent = noTexts[textIndex];
+            
+            // If we've used all texts, cycle through them
+            if (noClicks > noTexts.length) {
+                noBtn.textContent = noTexts[noTexts.length - 1];
+            }
+        });
+        
+        // Yes button click handler
+        yesBtn.addEventListener('click', function() {
+            // Hide the question and buttons
+            document.querySelector('.question-container').style.display = 'none';
+            
+            // Show the love letter
+            loveLetterContainer.style.display = 'block';
+            
+            // Add celebration hearts
+            for (let i = 0; i < 50; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️';
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.animationDelay = `${Math.random() * 2}s`;
+                heart.style.fontSize = `${Math.random() * 25 + 20}px`;
+                heart.style.color = '#ff4d94';
+                heart.style.zIndex = '100';
+                document.body.appendChild(heart);
+                
+                // Remove hearts after animation completes
+                setTimeout(() => {
+                    heart.remove();
+                }, 10000);
+            }
+            
+            // Change title and add a happy message
+            document.querySelector('h1').innerHTML = 'She Said YES! ❤️🎉';
+            
+            // Pre-fill the love letter with a sample (can be edited)
+            loveLetter.value = "My Dearest Love,\n\nI can't believe you actually said YES! This is the happiest day of my life. From the moment I met you, I knew you were someone special. Your smile lights up my world, your laugh is my favorite sound, and your presence makes everything better.\n\nI promise to always cherish you, support you, and make you feel loved every single day. You mean everything to me, and I'm so excited for our journey together.\n\nWith all my love,\n\n[Your Name Here]";
+        });
+        
+        // Make the NO button move when hovered (extra difficulty)
+        noBtn.addEventListener('mouseover', function() {
+            // Only move if it hasn't been clicked too many times
+            if (noClicks < 10) {
+                const newPos = getRandomPosition();
+                noBtn.style.left = `${newPos.x}px`;
+                noBtn.style.top = `${newPos.y}px`;
+            }
+        });
+    </script>
+</body>
+</html>
